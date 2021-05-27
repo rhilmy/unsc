@@ -3,7 +3,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 require('dotenv/config')
 const app = express();
+const path = require('path')
 
+app.set('view engine', 'hbs');
+const publicDirectory = path.join(__dirname,'./public')
+app.use(express.static(publicDirectory))
 var corsOptions = {
     origin: "http://localhost"
 };
@@ -26,7 +30,8 @@ require("./routes/tersedia.route.js")(app);
 
 // simple route
 app.get("/", (req, res) => {
-    res.json({ message: "/get/data, /get/unsc , /get/ct0, /get/all/:page"})
+    // res.json({ message: "/get/data, /get/unsc , /get/ct0, /get/all/:page"})
+    res.render("index")
 });
 
 

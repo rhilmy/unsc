@@ -3,7 +3,7 @@ const Tersedia =()=>{}
 
 
 Tersedia.getAll = result => {
-    sql.query("SELECT * FROM tersedia", (err, res) => {
+    sql.query("SELECT * FROM view_unsc_ct0", (err, res) => {
         if (err) {
             console.log(`error : ${err}`);
             result(null, err);

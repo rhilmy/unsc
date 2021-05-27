@@ -6,6 +6,7 @@ module.exports = app => {
     const ct0 = require("../controllers/ct0.controller.js");
     const allct0 = require("../controllers/allct0.controller.js");
     const umurct0 = require("../controllers/umurct0.controller.js");
+    const tidaktersedia = require("../controllers/tidaktersedia.controller.js");
 
 
     // retrieve all data supplier
@@ -15,5 +16,6 @@ module.exports = app => {
     app.get("/get/all/:hal", ct0.findAll);
     app.get("/get/allct0", allct0.findAll);
     app.get("/get/umurct0", umurct0.findAll);
+    app.get("/get/data2", tidaktersedia.findAll);
    
 }
