@@ -28,13 +28,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 require("./routes/tersedia.route.js")(app);
 
-// simple route
-app.get("/", (req, res) => {
-    // res.json({ message: "/get/data, /get/unsc , /get/ct0, /get/all/:page"})
-    res.render("index")
-});
-
-
 //The 404 Route (ALWAYS Keep this as the last route)
 app.get('*', function(req, res){
    res.status(404).send("what??")

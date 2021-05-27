@@ -8,7 +8,14 @@ module.exports = app => {
     const umurct0 = require("../controllers/umurct0.controller.js");
     const tidaktersedia = require("../controllers/tidaktersedia.controller.js");
 
+    app.get("/", (req, res) => {
+        res.render("index")
+    });
 
+    app.get('*', function(req, res){
+        res.status(404).send("what??")
+       });
+     
     // retrieve all data supplier
     app.get("/get/data", tersedia.findAll);
     app.get("/get/ct0", totalct0.findAll);
@@ -17,5 +24,5 @@ module.exports = app => {
     app.get("/get/allct0", allct0.findAll);
     app.get("/get/umurct0", umurct0.findAll);
     app.get("/get/data2", tidaktersedia.findAll);
-   
+  
 }
