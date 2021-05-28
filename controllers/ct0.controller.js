@@ -8,7 +8,7 @@ exports.findAll = (req, res) => {
                 message:
                     err.message || "Some error occured while retrieving data outlet."
             });
-        else res.send(data);
+        else res.status(200).send(data);
     }, (err,data)=>{
 
         if (err) {

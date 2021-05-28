@@ -1,13 +1,27 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const session = require('express-session');
 const cors = require("cors");
 require('dotenv/config')
 const app = express();
 const path = require('path')
+const assert = require('assert');
 
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true,
+    cookie: { maxAge: 500000 }
+}));
+
+
+
+//TEMPLATE ENGINE
 app.set('view engine', 'hbs');
 const publicDirectory = path.join(__dirname,'./public')
 app.use(express.static(publicDirectory))
+
+//CORS
 var corsOptions = {
     origin: "http://localhost"
 };
@@ -19,29 +33,19 @@ app.use(cors(corsOptions));
 //     next();
 //   });
 
+
+//BODYPARSE
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
-
 // parse requests of content-type: application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+//ROUTE
 require("./routes/tersedia.route.js")(app);
 
-// simple route
-app.get("/", (req, res) => {
-    // res.json({ message: "/get/data, /get/unsc , /get/ct0, /get/all/:page"})
-    res.render("index")
-});
 
-
-//The 404 Route (ALWAYS Keep this as the last route)
-app.get('*', function(req, res){
-   res.status(404).send("what??")
-  });
-
-  
-// set port, listen for request
+// SET PORT
 const PORT =  3107||process.env.PORT 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`)
